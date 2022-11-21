@@ -1,7 +1,7 @@
 <template>
     <div>
         <h4>
-            Temprature (Last 24 hours)
+            Temperature (Last 24 hours)
         </h4>
         <LineChart v-bind="lineChartProps"/>
     </div>
@@ -16,7 +16,7 @@ const props = defineProps({
    hours:{
     type:Array
    },
-   temprature:{
+   temperature:{
     type:Array
    }
 })
@@ -26,7 +26,7 @@ const props = defineProps({
       datasets: [
         {
           label: "Celsius",
-          data: props.temprature as [],
+          data: props.temperature as [],
           fill: false,
           borderColor: "#4bc0c0",
         },

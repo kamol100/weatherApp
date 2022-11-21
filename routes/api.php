@@ -22,5 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'api','prefix' => 'v1', 'namespace' => 'Api\v1'], function () {
     Route::get('/weather-reports', [WeatherInfoController::class, 'getWeatherReports'])->name('weather.reports');
     Route::get('/statistics', [WeatherInfoController::class, 'getStatistics'])->name('weather.statistics');
-    Route::get('/country', [CitiesController::class, 'getCountry'])->name('country');
+    Route::get('/cities', [CitiesController::class, 'getCities'])->name('cities');
 });

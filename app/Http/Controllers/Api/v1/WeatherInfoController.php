@@ -23,8 +23,8 @@ class WeatherInfoController extends Controller
         return $this->response($info);
     }
 
-    public function getStatistics($city_id = 1){
-        return $this->weatherInfo->statistics($city_id);
+    public function getStatistics(Request $request){
+        return $this->weatherInfo->statistics($request->input('city'));
     }
 
 }

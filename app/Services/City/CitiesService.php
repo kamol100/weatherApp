@@ -10,11 +10,8 @@ class CitiesService{
         return (new Cities());
     }
 
-    public function getCities($data = []){
-        return $this->model()->get($data);
+    public function getCities(){
+        return $this->model()->take(100)->get();
     }
 
-    public function getCountryFromCities(){
-        return $this->model()->get([ 'country'])->groupBy("country");
-    }
 }

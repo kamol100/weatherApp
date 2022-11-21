@@ -3,7 +3,6 @@
 namespace App\Services\Weather;
 use App\Models\WeatherInfo;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 
 class WeatherInfoService{
 
@@ -16,7 +15,7 @@ class WeatherInfoService{
     }
 
     public function reports(){
-        return $this->model()->take(12)->orderBy('id', 'desc')->get();
+        return $this->model()->take(18)->inRandomOrder()->orderBy('id', 'desc')->get();
     }
 
     public function statistics($city_id):array{
@@ -28,10 +27,10 @@ class WeatherInfoService{
             })
             ->groupBy(function ($date){
                 return Carbon::parse($date->created_at)->format('H');
-            }); 
+            });
 
             $hours = $data->keys();
-            
+
             return [
               'hours' => $hours,
               "temperature" => $this->calculate($data, $hours, "temperature"),
@@ -41,7 +40,7 @@ class WeatherInfoService{
 
     }
 
-    public function calculate($data, $keys, $item){
+    public function calculate($data, $keys, $item):array{
         $result = [];
         foreach($keys as $key){
             $result[] = $data[$key]->collect()->pluck($item)->avg();
