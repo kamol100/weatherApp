@@ -11,7 +11,7 @@ class CitiesService{
     }
 
     public function getCities(){
-        return $this->model()->take(100)->get();
+        return $this->model()->get();
     }
 
 }

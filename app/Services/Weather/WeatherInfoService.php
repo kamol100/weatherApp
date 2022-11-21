@@ -15,7 +15,7 @@ class WeatherInfoService{
     }
 
     public function reports(){
-        return $this->model()->take(18)->inRandomOrder()->orderBy('id', 'desc')->get();
+        return $this->model()->take(6)->orderBy('id', 'desc')->get();
     }
 
     public function statistics($city_id):array{

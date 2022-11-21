@@ -8,7 +8,7 @@ Please run the flowing command to run the project
 - php artisan key:generate
 - php artisan migrate
 - php artisan db:seed
-- php artisan weather:update ( possible to set limit ex: "weather:update 100" will run 100 job and pull 100 cities data)
+- php artisan weather:update
 - php artisan queue:work
 
 - php artisan serve

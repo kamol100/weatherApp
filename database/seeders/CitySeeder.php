@@ -15,8 +15,6 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-        $file_size = filesize(storage_path('city.list.json'));
-        echo "File size ".round($file_size/1048576)." mb , May take few minute to execute";
 
         $cities = json_decode(file_get_contents(storage_path('city.list.json')), true);
         foreach($cities as $city){

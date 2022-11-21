@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\UpdateWeatherJob;
+use App\Services\City\CitiesService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -27,22 +28,13 @@ class WeatherUpdate extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(CitiesService $cities)
     {
 
-        DB::table('cities')
-            ->select(['lat', 'lon', 'id'])
-            ->orderBy('id')
-            ->chunk(1000, function($cites){
-            foreach($cites as $key=>$city){
-
-               UpdateWeatherJob::dispatch($city->lat, $city->lon, $city->id);
-
-               if($key+1 == $this->argument('limit')){
-                return false;
-               }
-            }
-        });
+        $cities = $cities->getCities();
+        foreach($cities as $key=>$city){
+           UpdateWeatherJob::dispatch($city->lat, $city->lon, $city->id);
+        }
 
         return Command::SUCCESS;
     }
