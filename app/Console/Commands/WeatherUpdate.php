@@ -30,7 +30,10 @@ class WeatherUpdate extends Command
     public function handle()
     {
 
-        DB::table('cities')->select(['lat', 'lon', 'id'])->orderBy('id')->take(100)->chunk(1000, function($cites){
+        DB::table('cities')
+            ->select(['lat', 'lon', 'id'])
+            ->orderBy('id')
+            ->chunk(1000, function($cites){
             foreach($cites as $key=>$city){
 
                UpdateWeatherJob::dispatch($city->lat, $city->lon, $city->id);
